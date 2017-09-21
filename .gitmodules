@@ -1,0 +1,10 @@
+[submodule "actor-framework"]
+	path = actor-framework
+	url = https://github.com/actor-framework/actor-framework.git
+	branch = develop
+[submodule "vast"]
+	path = vast
+	url = https://github.com/vast-io/vast.git
+[submodule "indexing"]
+	path = indexing
+	url = https://github.com/josephnoir/indexing.git
