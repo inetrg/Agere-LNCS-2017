@@ -118,6 +118,9 @@ target_link_libraries(bench_spawn_core ${CMAKE_DL_LIBS} ${CAF_LIBRARIES} ${OpenC
 add_executable(list_devices src/list_devices.cpp src/util.cpp ${HEADERS})
 target_link_libraries(list_devices ${CMAKE_DL_LIBS} ${OpenCL_LIBRARIES})
 
+add_executable(bench_matrix_offloading src/bench_matrix_offloading.cpp src/config.cpp ${HEADERS})
+target_link_libraries(bench_matrix_offloading ${CMAKE_DL_LIBS} ${CAF_LIBRARIES} ${OpenCL_LIBRARIES})
+
 # collect all compiler flags
 string(TOUPPER "${CMAKE_BUILD_TYPE}" UPPER_BUILD_TYPE)
 set(ALL_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_${UPPER_BUILD_TYPE}}")

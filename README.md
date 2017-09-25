@@ -86,9 +86,9 @@ Each program prints the runtime for `I` iterations in microseconds.
 
 ### Scaling in a heterogeneous setup
 
-Section 5.4
+This benchmark is implemented in the program `bench_matrix_offloading` which calculates an image of Mandelbrot set. Configuration arguments are the width (`-W WIDTH`) and height (`-H HEIGHT`) of the image as well as the percentage that is offloaded with OpenCL (`--with-opencl=PERCENTAGE`). Additionally, the program accepts a device name (`-d D`) and a number of iterations to perform (`-i I`).
 
-- [ ] Find benchmark code
+The graphs in the paper were calculated with a width and height of 16,000 for 100 and 1,000 iterations while moving the image from the CPU to an OpenCL device in steps of 10%.
 
 
 ### Measurement Data
