@@ -45,7 +45,7 @@ If you want to perform different measurements, each program accepts a file with 
 
 The indexing project further builds the `overhead` executable to estimate the time for passing messages between OpenCL actor stages (shortly mentioned in Section 3.6). It accepts the argument `--use_mapping_functions` to decide whether the mapping functions or round trip time for a complete calculation is used for the estimate. Additionally, the argument `-i I` determines how many iterations to execute.
 
-The program prints the mean over I iterations in microseconds.
+The program prints the mean over `I` iterations in microseconds.
 
 
 ### Spawn Time
@@ -59,19 +59,22 @@ Each program prints the time to create `I` actors in microseconds.
 
 ### Runtime Overhead
 
-This benchmark is presented in Section 5.2 of the paper. It requires some adjustments to CAF as the timepoints used for measurement are usually included. The following external variables must be added to the command class `actor-framework/libcaf_opencl/caf/opencl/command.hpp`
-in lines 44 and 45:
+This benchmark is presented in Section 5.2 of the paper. It requires some adjustments to CAF as the timepoints used for measurement are usually included. The following external variables must be added to the command class `actor-framework/libcaf_opencl/caf/opencl/command.hpp`:
+
+In lines 44 and 45:
 ```
 static std::chrono::high_resolution_clock::time_point a;
 static std::chrono::high_resolution_clock::time_point b;
 ```
+
 In line 100 at the beginning of the first `enqueue` function
 ```
 a = std::chrono::high_resolution_clock::now();
 ```
+
 And in line 229 in the first line of the `handle_results` function
 ```
-  b = std::chrono::high_resolution_clock::now();
+b = std::chrono::high_resolution_clock::now();
 ```
 
 The related program is called `bench_overhead` and requires a matrix size as input (`-s N`). The paper includes measurements for sizes of `N` = 1000, 4000, 8000 and 12000. The benchmarks prints three measurements in microseconds: the total runtime, the time spent in OpenCL and the difference between both values (separated by commas).
